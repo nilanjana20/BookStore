@@ -1,0 +1,58 @@
+.container{
+    margin: 0 150px;
+}
+
+.header{
+    margin: 15px 0;
+}
+
+.wishlist_head{
+    display: flex;
+    border: 1px solid rgb(219, 202, 202);
+    width: 70%;
+    height: auto;
+    padding: 0px 30px;
+    background-color: #F5F5F5;
+}
+.bookImage{
+    height: 84px;
+    width: 65px;
+}
+.book{
+    display: flex;
+    border: 1px solid rgb(219, 202, 202);
+    width: 70%;
+    height: auto;
+    padding: 10px 30px;
+}
+.bookinfo{
+    margin-left: 30px;
+    font-size: 15px;
+}
+.bookName{
+    font-size: 20px; 
+    color: rgb(77, 77, 74);
+    margin-bottom: 5px;
+}
+.author{
+    font-size: 14px; color: rgb(187, 187, 183); 
+    margin-bottom: 5px;
+}
+.cost{
+    display: flex;
+}
+.cost b{
+    font-size: 17px;
+}
+
+.cost s{
+    font-size: 12px;
+    margin-left: 10px;
+    color: rgb(187, 187, 183);
+}
+
+.delete{
+    margin-left: auto;
+    color: #9D9D9D;
+    opacity: 0.5;
+}

@@ -1,0 +1,91 @@
+<!-- <p>quickview works!</p> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<div>
+    <div class="container" fxLayout="column">
+        <div class="header" fxLayout="row">
+            <p>Home/Book({{bookInfo?.quantity}})</p>
+        </div>
+        <div class="description" fxLayout="row">
+            <div class="sampleimg" fxLayout="column">
+                <img class="sample" src="..\..\..\..\assets\images\book2x.png" alt="">
+                <img src="" alt="">
+            </div>
+            <div fxLayout="column">
+                <div class="book" fxLayout="column">
+                    <img src="..\..\..\..\assets\images\book2x.png" alt="">
+                </div>
+                <div class="options" fxLayout="row">
+                    <div *ngIf="!hide">
+                        <button id="bag" (click)="addToCart()" (click)="switching()">ADD TO BAG</button>
+                    </div>
+                    <div class="cart" *ngIf="hide">
+                        <button id="minus" (click)="minus()">-</button>
+                        <p>{{book_quantity}}</p>
+                        <button id="plus" (click)="plus()">+</button>
+                    </div>
+                    <div (click)="addWishList()" routerLink="/dashboard/wishlist">
+                        <button id="wishlist">
+                            <img class="wishlist" src="..\..\..\..\assets\images\favorite.svg" alt="">
+                            <p class="text">WISHLIST</p>
+                        </button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="book_info" fxLayout="column">
+            <div class="book_data" fxLayout="column">
+                <div style="font-size: 20px; color: rgb(77, 77, 74); margin-bottom: 5px;"><b>{{bookInfo?.bookName}}</b>
+                </div>
+                <div style="font-size: 14px; color: rgb(187, 187, 183); margin-bottom: 5px;">by{{bookInfo?.author}}
+                </div>
+                <div class="rating">
+                    <p class="p2">4.5</p>
+                    <img src="..\..\..\..\assets\images\star.svg" alt="">
+                </div>
+                <div class="cost">
+                    <p><b>Rs.{{bookInfo?.discountPrice}}</b></p>
+                    <p><s>Rs.{{bookInfo?.price}}</s></p>
+                </div>
+            </div>
+            <hr>
+            <div fxLayout="column">
+                <ul>
+                    <li>Book Detail</li>
+                </ul>
+            </div>
+            <div class="book_detail" fxLayout="column">
+                <p>{{bookInfo?.description}}</p>
+            </div>
+            <hr>
+            <div fxLayout="column">
+                <div class="customerfeedback">
+                    <span>Customer Feedback</span>
+                </div>
+                <div class="review_box">
+                    <p>Overall Rating</p>
+                    <div class="starContainer">
+                        <div class="star-widget">
+                            <input type="radio" name="rate" id="rate-5" value="5">
+                            <label for="rate-5" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-5" value="4">
+                            <label for="rate-4" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-5" value="3">
+                            <label for="rate-3" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-5" value="2">
+                            <label for="rate-2" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-5" value="1">
+                            <label for="rate-1" class="fas fa-star"></label>
+                        </div>
+                    </div>
+                    <div class="textarea">
+                        <textarea cols="30" type="text" placeholder="write your review..."></textarea>
+                    </div>
+                    <div class="btn">
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
