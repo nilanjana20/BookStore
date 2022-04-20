@@ -6,7 +6,7 @@ import { LoginComponent } from './Component/login/login.component';
 import { QuickviewComponent } from './Component/quickview/quickview.component';
 import { RegisterComponent } from './Component/register/register.component';
 import { WishlistComponent } from './Component/wishlist/wishlist.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './Component/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'register',component:RegisterComponent},

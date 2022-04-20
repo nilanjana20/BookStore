@@ -113,7 +113,7 @@ customerDetails(data:any){
        'x-access-token': this.token
     })
   }
-  return this.httpService.putService('bookstore_user/edit_user', data, true, header)
+  return this.httpService.putService('bookstore_user/edit_user/', data, true, header)
 }
 
 }
