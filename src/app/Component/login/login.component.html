@@ -1,1 +1,33 @@
-<p>login component works!</p>
+<!-- <p>login component works!</p> -->
+
+<div class="component">
+    <div class="form-head">
+      <div class="form-box">
+        <button type="button" class="toggle-btn">LOGIN</button>
+        <button type="button" class="toggle-btn" routerLink="/register">SIGNUP</button>
+        <hr id="Indicator">
+      </div>
+      <form id="login" class="input-group" [formGroup]="loginForm" (ngSubmit)="onSubmitloginForm()">
+         <input type="text" class="input-field" placeholder="Email" formControlName="email" required>
+         <input type="password" class="input-field" placeholder="Password" formControlName="password" required>
+         <button type="submit" class="submit-btn">Log In</button>
+         <span class="text">OR</span>
+      <div class="choose-btn" fxLayout="column" fxLayoutAlign="space-between center">
+        <div>
+          <button type="submit" class="facebook-btn">Facebook</button>
+        </div>
+        <div>
+          <button type="submit" class="google-btn">Google</button>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="containter">
+      <div class="header">
+        <div class="img-box">
+          <img class="online" src="../../../assets/images/onlineshop.png">       
+          <span class="text-online">ONLINE BOOK SHOPPING</span>
+        </div>
+       </div>
+      </div>
+</div>
