@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/Services/bookService/book.service';
+import { DataService } from 'src/app/Services/dataService/data.service';
 
 @Component({
   selector: 'app-allbooks',
@@ -9,12 +10,17 @@ import { BookService } from 'src/app/Services/bookService/book.service';
 })
 export class AllbooksComponent implements OnInit {
   booklist: any[]=[];
+  booksCount:any;
+  page:number = 1;
 
-  constructor(private book:BookService, private router:Router) { }
+  filteredString = "";
+
+  constructor(private book:BookService, private router:Router,private dataservice:DataService) { }
 
   ngOnInit(): void {
     this.getallbooks()
     console.log("books",this.getallbooks);
+    this.dataservice.store.subscribe(x => this.filteredString = x);
     
   }
 
@@ -22,7 +28,9 @@ export class AllbooksComponent implements OnInit {
     this.book.getallbooks().subscribe((res:any)=>{
       console.log("res ===",res);
       this.booklist=res.result
+      this.booksCount=res.result.length;
       console.log("booklist fetched",this.booklist);
+      console.log("booklist length",this.booksCount);
       
     }, error=>{
       console.log(error);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BookService } from 'src/app/Services/bookService/book.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class CartComponent implements OnInit {
   submitted = false;
   continue:boolean = true;
 
-  constructor(private book:BookService,private formbuilder: FormBuilder) { }
+  constructor(private book:BookService,private formbuilder: FormBuilder, private route:Router) { }
 
   ngOnInit(): void {
     this.getAddToCart();
@@ -47,14 +48,31 @@ export class CartComponent implements OnInit {
     })
  }
 
- minus(){
+ minus(item:any){
   if(this.book_quantity>1){
    this.book_quantity--
+   let data = {
+    "quantityToBuy":this.book_quantity
+  }
+  this.book.cartItemQuantity(item.product_id?._id, data).subscribe((res:any)=>{
+    console.log("adding to card of this bookId", this.book_quantity);
+  }, error=>{
+    console.log(error);
+  })
+
   }
 }
 
-plus(){
+plus(item:any){
  this.book_quantity++
+ let data = {
+  "quantityToBuy":this.book_quantity
+}
+this.book.cartItemQuantity(item.product_id?._id, data).subscribe((res:any)=>{
+  console.log("quantity of cart item updated", this.book_quantity);
+}, error=>{
+  console.log(error);
+})
 }
 
 removeItem(item:any){
@@ -84,7 +102,7 @@ onSubmit(){
         state: this.customerForm.value.state
       }
       this.book.customerDetails(data).subscribe((response:any)=>{
-        console.log(response);
+        console.log("Details received",response);
       }, (error: any) =>{
         console.log(error);
       })
@@ -103,6 +121,20 @@ showOrderDetails(){
 
 ordersummary() {
 
+  let data = {
+    "orders": [
+      {
+        "product_id": "5f60c89223809243e2528781",
+        "product_name": "Xyzabc",
+        "product_quantity": 10,
+        "product_price": 1000
+      }
+    ]
+  }
+  this.book.addOrder(data).subscribe((response: any) => {
+    console.log(response);
+  })
+  this.route.navigateByUrl("/dashboard/order")
 }
 
 

@@ -82,7 +82,7 @@ getCartItems(){
  return this.httpService.getService('/bookstore_user/get_cart_items/', true,header)
 }
 
-cartItemQuantity(id:any){
+cartItemQuantity(id:any,data:any){
   console.log("token",this.token);
 
  let header ={
@@ -91,7 +91,7 @@ cartItemQuantity(id:any){
       'x-access-token': this.token
    })
  }
-  return this.httpService.putService('bookstore_user/cart_item_quantity/'+id, {}, true,header)
+  return this.httpService.putService('bookstore_user/cart_item_quantity/'+id, data, true,header)
 }
 
 removeCartItem(id:any){
@@ -115,5 +115,36 @@ customerDetails(data:any){
   }
   return this.httpService.putService('bookstore_user/edit_user/', data, true, header)
 }
+
+addOrder(data:any){
+  let header ={
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      'x-access-token': this.token
+     })
+  }
+  return this.httpService.postService('bookstore_user/add/order',data, true, header ) 
+  }
+
+  addFeedback(id:any, data:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': this.token
+       })
+    }
+    return this.httpService.postService('/bookstore_user/add/feedback/'+id, data, true, header)
+  }
+
+  getFeedback(id:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': this.token
+       })
+    }
+    return this.httpService.getService('/bookstore_user/get/feedback/'+id, true, header)
+  }
+
 
 }

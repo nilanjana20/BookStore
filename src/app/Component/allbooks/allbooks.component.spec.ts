@@ -1,14 +1,17 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AllbooksComponent } from './allbooks.component';
 
-describe('AllbooksComponent', () => {
+ describe('AllbooksComponent', () => {
   let component: AllbooksComponent;
   let fixture: ComponentFixture<AllbooksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AllbooksComponent ]
+      declarations: [ AllbooksComponent ],
+      imports: [HttpClientModule,RouterTestingModule]
     })
     .compileComponents();
   });

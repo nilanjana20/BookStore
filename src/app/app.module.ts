@@ -14,6 +14,9 @@ import { QuickviewComponent } from './Component/quickview/quickview.component';
 import { WishlistComponent } from './Component/wishlist/wishlist.component';
 import { CartComponent } from './Component/cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderComponent } from './Component/order/order.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     QuickviewComponent,
     WishlistComponent,
     CartComponent,
-    DashboardComponent
+    DashboardComponent,
+    OrderComponent,
+    FilterPipe
   ],
 
   imports: [
@@ -34,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   
   providers: [],

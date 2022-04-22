@@ -26,9 +26,9 @@
                         <p><s>Rs.{{item.product_id.price}}</s></p>
                     </div>
                     <div class="cart">
-                        <button id="minus" (click)="minus()">-</button>
+                        <button id="minus" (click)="minus(item)">-</button>
                         <p>{{book_quantity}}</p>
-                        <button id="plus" (click)="plus()">+</button>
+                        <button id="plus" (click)="plus(item)">+</button>
                         <span style="margin: 10px 15px;color: rgb(82, 80, 80);cursor: pointer;" (click)="removeItem(item)">Remove</span>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
             <div *ngIf="showSummeryDetails" class="showSummrey">
                 <p style="font-size: 20px; margin-bottom: 20px;">Order Summery</p>
                 <div class="book" *ngFor="let book of cartItems">
-                    <div class="bookImg"><img src="..\..\..\..\assets\images\book.png" alt=""></div>
+                    <div class="bookImg"><img src="..\..\..\..\assets\images\Image1.png" alt=""></div>
                     <div class="bookinfo">
                         <div style="font-size: 20px; color: rgb(77, 77, 74); margin-bottom: 5px;">
                             {{book.product_id.bookName}}</div>

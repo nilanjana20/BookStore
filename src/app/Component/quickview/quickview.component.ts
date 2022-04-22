@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/Services/bookService/book.service';
+import { DataService } from 'src/app/Services/dataService/data.service';
 
 @Component({
   selector: 'app-quickview',
@@ -13,13 +14,18 @@ export class QuickviewComponent implements OnInit {
   hide:boolean=false
   book_quantity:number=1;
 
-  constructor(private book:BookService, private route:ActivatedRoute) { }
+  feedback:any;
+  value:any;
+  feedbackList:any;
+
+  constructor(private book:BookService, private route:ActivatedRoute,private dataservice:DataService) { }
 
   ngOnInit(): void {
     this.getBookDetail();
     this.bookId=this.route.snapshot.params['id']
     // console.log("bookinfo received", this.bookInfo);
-    
+    this.getFeedback();
+
   }
 
   getBookDetail(){
@@ -54,7 +60,15 @@ export class QuickviewComponent implements OnInit {
 
  minus(){
    if(this.book_quantity>1){
-    this.book_quantity--
+    this.book_quantity--;
+    let data = {
+      "quantityToBuy": this.book_quantity
+    }
+    this.book.cartItemQuantity(this.bookInfo._id, data).subscribe((res:any)=>{
+      console.log("added to cart", this.book_quantity);
+    }, error=>{
+      console.log(error);
+    })
    }
    else if(this.book_quantity<=1){
      this.switching()
@@ -63,9 +77,20 @@ export class QuickviewComponent implements OnInit {
 
 plus(){
   this.book_quantity++
+
+  let data = {
+    "quantityToBuy": this.book_quantity
+  }
+  this.book.cartItemQuantity(this.bookInfo._id, data).subscribe((res:any)=>{
+    console.log("added to cart", this.book_quantity);
+  }, error=>{
+    console.log(error);
+  })
 }
 
+
 addToCart(){
+  this.sendQuantiy(this.book_quantity)
   this.book.addCartItems(this.bookId).subscribe((res:any)=>{
     console.log("cart items fetched",res);
   }, error=>{
@@ -73,5 +98,26 @@ addToCart(){
   })
 }
 
+addFeedback(){
+  let data= {
+    comment: this.feedback,
+    rating: this.value
+  }
+  this.book.addFeedback(this.bookId, data).subscribe((res:any)=>{
+    console.log(res);
+  })
+}
+
+getFeedback(){
+  console.log("feedback list",this.bookId);
+  this.book.getFeedback(this.bookId).subscribe((res:any)=>{
+    console.log("get feedback list",res.result);
+    this.feedbackList = res.result;
+  })
+}
+
+sendQuantiy(count:any){
+  this.dataservice.updateData(count);
+}
 
 }

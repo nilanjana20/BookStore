@@ -3,24 +3,37 @@
         <div class="header" fxLayout="row">
             <div class="books_count" fxLayout="row">
                 <p id="books" style="font-size: 22px; margin-top: 13px;">Books</p>
-                <p id="count" style="font-size: 12px; margin: 16px 0 0 5px;">(128 items)</p>
+                <p id="count" style="font-size: 12px; margin: 16px 0 0 5px;">({{booksCount}} items)</p>
             </div>
             <div class="sort" fxLayout="row">
-                <mat-form-field appearance="outline">
+                <!-- <mat-form-field appearance="outline">
                     <mat-label>Sort by relevance</mat-label>
-                </mat-form-field>
+                    <mat-select>
+                        <mat-option>low to high</mat-option>
+                        <mat-option>high to low</mat-option>
+                        <mat-option>Newest</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+                <!-- <select name="sort" id="sort">
+                    <option >Sort by relevance</option>
+                    <option value="low">low to high</option>
+                    <option value="high">high to low</option>
+                    <option value="new">Newest</option>
+                </select> -->
+                  
             </div>
         </div>
         <div class="books_list" fxLayout="row">
-            <div class="book" *ngFor="let book of booklist">
+            <div class="book" *ngFor="let book of booklist | filter:filteredString | paginate: { itemsPerPage: 8, currentPage: page}">
                 <div class="book_image">
                     <img  class="online" src="..\..\..\..\assets\images\book2x.png" (click)="quickview(book)">
                 </div>
                 <div class="book_data">
-                    <div><b>{{book.bookName}}</b></div>
+                    <div class="name">{{book.bookName}}</div>
                     <div class="author">by {{book.author}}</div>
                     <div class="rating">
-                        <p style="margin-top: 2px;margin-left: 3px;font-size: 17px;">4.5</p>
+                        <p style="margin-top: -1px;margin-left: 3px;font-size: 13px;">4.5</p>
                         <img src="..\..\..\..\assets\images\star.svg" class="star">
                         <p style="color: black; margin-left: 5px; margin-top: 2px;"></p>
                     </div>
@@ -31,6 +44,10 @@
                 </div>
             </div>
         </div>
+
+    <div class="pagination" fxLayout="column" fxLayoutAlign="center center">
+    <pagination-controls class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
+    </div>
     </div>
     
 </div>
