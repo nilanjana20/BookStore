@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+  
   private info = new Subject<any>();
   public store = this.info.asObservable();
 

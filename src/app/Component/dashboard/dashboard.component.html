@@ -4,7 +4,7 @@
       <img class="book_image" src="..\..\..\..\assets\images\education.svg">
     </div>
     <div fxLayout="row" fxLayout.xs="row">
-      <h1 class="example-app-name">Bookstore</h1>
+      <h1 class="example-app-name" routerLink="/dashboard/allbooks">Bookstore</h1>
     </div>
 
     <div class="div_wrraper">
@@ -19,7 +19,8 @@
     <div class="img-person">
       <img src="../../../../assets/images/person.svg">
     </div>
-    <div class="img-cart" routerLink="/dashboard/cart">
+
+    <div class="img-cart" routerLink="/dashboard/cart" fxLayout="column">
     
       <span matBadge={{cartQuantity}} matBadgePosition="after" matBadgeColor="warn" [matBadgeHidden]="cartQuantity==0">  <img src="..\..\..\..\assets\images\supermarket.svg" ></span>
     </div>

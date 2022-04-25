@@ -78,6 +78,8 @@ this.book.cartItemQuantity(item.product_id?._id, data).subscribe((res:any)=>{
 removeItem(item:any){
    this.book.removeCartItem(item._id).subscribe((res:any)=>{
      console.log("Item removed",res);
+     this.ngOnInit();
+
    }, error=>{
     console.log(error);
   })

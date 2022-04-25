@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/Services/bookService/book.service';
 import { DataService } from 'src/app/Services/dataService/data.service';
 
@@ -12,15 +12,18 @@ export class QuickviewComponent implements OnInit {
   bookInfo: any;
   bookId:any;
   hide:boolean=false
-  book_quantity:number=1;
-
+  book_quantity:number=0;
+  
   feedback:any;
   value:any;
   feedbackList:any;
 
-  constructor(private book:BookService, private route:ActivatedRoute,private dataservice:DataService) { }
+  constructor(private book:BookService, private route:ActivatedRoute,private dataservice:DataService,private router:Router) { }
 
   ngOnInit(): void {
+    // this.router.routeReuseStrategy.shouldReuseRoute = () =>{
+    //   return false;
+    // }
     this.getBookDetail();
     this.bookId=this.route.snapshot.params['id']
     // console.log("bookinfo received", this.bookInfo);
@@ -59,8 +62,9 @@ export class QuickviewComponent implements OnInit {
  }
 
  minus(){
+  this.book_quantity--;
+  this.sendQuantiy(this.book_quantity);
    if(this.book_quantity>1){
-    this.book_quantity--;
     let data = {
       "quantityToBuy": this.book_quantity
     }
@@ -70,14 +74,14 @@ export class QuickviewComponent implements OnInit {
       console.log(error);
     })
    }
-   else if(this.book_quantity<=1){
+   else if(this.book_quantity<1){
      this.switching()
    }
  }
 
 plus(){
   this.book_quantity++
-
+  this.sendQuantiy(this.book_quantity);
   let data = {
     "quantityToBuy": this.book_quantity
   }
@@ -90,7 +94,8 @@ plus(){
 
 
 addToCart(){
-  this.sendQuantiy(this.book_quantity)
+  this.book_quantity++;
+  this.sendQuantiy(this.book_quantity);
   this.book.addCartItems(this.bookId).subscribe((res:any)=>{
     console.log("cart items fetched",res);
   }, error=>{
@@ -105,6 +110,8 @@ addFeedback(){
   }
   this.book.addFeedback(this.bookId, data).subscribe((res:any)=>{
     console.log(res);
+    // window.location.reload();
+    this.ngOnInit();
   })
 }
 
@@ -116,8 +123,8 @@ getFeedback(){
   })
 }
 
-sendQuantiy(count:any){
-  this.dataservice.updateData(count);
+sendQuantiy(book_quantity:any){
+  this.dataservice.updateData(book_quantity);
 }
 
 }

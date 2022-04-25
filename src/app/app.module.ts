@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderComponent } from './Component/order/order.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FilterPipe } from './pipes/filter.pipe';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatBadgeModule
   ],
   
   providers: [],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookService } from 'src/app/Services/bookService/book.service';
 
 @Component({
@@ -9,9 +10,12 @@ import { BookService } from 'src/app/Services/bookService/book.service';
 export class WishlistComponent implements OnInit {
   wishListCount:any;
   wishlist:any;
-  constructor(private book:BookService) { }
+  constructor(private book:BookService,private router:Router) { }
 
   ngOnInit(): void {
+    // this.router.routeReuseStrategy.shouldReuseRoute = () =>{
+    //   return false;
+    // }
     this.getWishListBook()
   }
 
@@ -28,6 +32,8 @@ getWishListBook(){
 deleteList(list:any){
    this.book.removeWishList(list.product_id._id).subscribe((res:any)=>{
     console.log("wishlist item deleted",res);
+    // window.location.reload();
+    this.ngOnInit();
   }, error=>{
     console.log(error);
   })
