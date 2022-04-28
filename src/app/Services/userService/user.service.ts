@@ -29,4 +29,21 @@ export class UserService {
     return this.httpService.postService('bookstore_user/login',reqdata,false,header)
   }
 
+  adminRegister(data:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'      
+      })
+    }
+    return this.httpService.postService('bookstore_user/admin/registration', data, false, header)
+  }
+
+  adminLogin(data:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'      
+      })
+    }
+    return this.httpService.postService('bookstore_user/admin/login', data, false, header)
+  }
 }

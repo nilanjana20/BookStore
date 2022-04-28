@@ -11,6 +11,8 @@ import { UserService } from 'src/app/Services/userService/user.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
+
+  category: any;
   
   constructor(private formBuilder: FormBuilder, private user:UserService, private router:Router) { }
 
@@ -19,6 +21,14 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     }); 
+  }
+
+  admin(){
+    this.category = true;
+  }
+
+  userReg(){
+    this.category = false;
   }
 
   onSubmitloginForm(){
@@ -30,11 +40,24 @@ export class LoginComponent implements OnInit {
           email:this.loginForm.value.email,
           password:this.loginForm.value.password,
       }
+    if(this.category == true){
+      this.user.adminLogin(data).subscribe((response:any)=>{
+        console.log(response); 
+        localStorage.setItem('token',response.result.accessToken)
+        this.router.navigateByUrl("/dashboard/adminbook")
+      },(error:any)=>{
+        console.log(error);    
+      })
+    }
+    else if(this.category == false){
       this.user.login(data).subscribe((response:any)=>{
         console.log("done",response);
         localStorage.setItem('token',response.result.accessToken)
         this.router.navigateByUrl("/dashboard/allbooks")
+      }, (error:any)=>{
+        console.log(error);    
       })
+     }
     }
     else{
       console.log("Enter valid data");

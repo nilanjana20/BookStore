@@ -2,11 +2,18 @@
 <div class="component">
     <div class="form-head">
       <div class="form-box">
+        <div class="type" fxLayout="row">
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="admin" (click)="admin()">Admin</mat-radio-button>
+            <mat-radio-button value="user" (click)="userReg()">User</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <button type="button" class="toggle-btn" routerLink="/login">LOGIN</button>
         <button type="button" class="toggle-btn" >SIGNUP</button>
         <hr id="Indicator">
       </div>
       <form id="signup" class="input-group" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
           <input type="text" class="input-field" id="name" placeholder="Name" formControlName="fullName" required>
           <input type="text" class="input-field" placeholder="Email" formControlName="email" required>
           <input type="text" class="input-field" placeholder="Password" formControlName="password" required>
@@ -15,9 +22,9 @@
       </form>
     </div>
       
-      <div class="containter">
+      <div class="containter" fxHide.xs="true" fxHide.sm="true">
         <div class="header">
-          <div class="img-box">
+          <div class="img-box" fxHide.xs="true" fxHide.sm="true">
             <img class="online" src="../../../assets/images/onlineshop.png">       
             <span class="text-online">ONLINE BOOK SHOPPING</span>
           </div>

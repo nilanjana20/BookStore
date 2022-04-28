@@ -11,6 +11,8 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
 
+  category:any;
+
   constructor(private formBuilder: FormBuilder,private user:UserService) { }
 
   ngOnInit(): void {
@@ -21,6 +23,14 @@ export class RegisterComponent implements OnInit {
       phone: ['', Validators.required],
       service:['advance']
     }); 
+  }
+
+  admin(){
+    this.category = true;
+  }
+
+  userReg(){
+    this.category = false;
   }
 
   onSubmit(){
@@ -34,10 +44,22 @@ export class RegisterComponent implements OnInit {
           password:this.registerForm.value.password,
           phone:this.registerForm.value.phone,
       }
-      this.user.register(data).subscribe((response:any)=>{
-        console.log("done",response);
-      })
-    }
+      if(this.category == true){
+        this.user.adminRegister(data).subscribe((response:any)=>{
+          console.log(response); 
+        },(error:any)=>{
+          console.log(error);    
+        })
+      }
+      else if(this.category == false){
+        this.user.register(data).subscribe((response:any)=>{
+          console.log("done",response);
+        }, (error:any)=>{
+          console.log(error);    
+        })
+       }
+      }
+     
     else{
       console.log("Enter valid data");
     }

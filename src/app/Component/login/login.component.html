@@ -3,6 +3,12 @@
 <div class="component">
     <div class="form-head">
       <div class="form-box">
+        <div class="type" fxLayout="row">
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="admin" (click)="admin()">Admin</mat-radio-button>
+            <mat-radio-button value="user" (click)="userReg()">User</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <button type="button" class="toggle-btn">LOGIN</button>
         <button type="button" class="toggle-btn" routerLink="/register">SIGNUP</button>
         <hr id="Indicator">
@@ -22,7 +28,7 @@
       </div>
       </form>
     </div>
-    <div class="containter">
+    <div class="containter" fxHide.xs="true" fxHide.sm="true">
       <div class="header">
         <div class="img-box">
           <img class="online" src="../../../assets/images/onlineshop.png">       

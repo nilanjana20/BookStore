@@ -18,7 +18,9 @@ import { OrderComponent } from './Component/order/order.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FilterPipe } from './pipes/filter.pipe';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import {MatRadioModule} from '@angular/material/radio';
+import { AdminbooksComponent } from './Component/adminbooks/adminbooks.component';
+import { AdminbookupdateComponent } from './Component/adminbookupdate/adminbookupdate.component';
 
 
 @NgModule({
@@ -32,7 +34,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     CartComponent,
     DashboardComponent,
     OrderComponent,
-    FilterPipe
+    FilterPipe,
+    AdminbooksComponent,
+    AdminbookupdateComponent
+    
   ],
 
   imports: [
@@ -43,7 +48,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule
   ],
   
   providers: [],

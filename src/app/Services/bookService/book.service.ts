@@ -146,5 +146,34 @@ addOrder(data:any){
     return this.httpService.getService('/bookstore_user/get/feedback/'+id, true, header)
   }
 
+  addAdminBook(data:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': this.token
+       })
+    }
+    return this.httpService.postService('/bookstore_user/admin/add/book', data, true, header)
+  }
+
+  updateAdminBook(id:any, data:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': this.token
+       })
+    }
+    return this.httpService.putService('/bookstore_user/admin/update/book/'+id, data, true, header)
+  }
+
+  deleteAdminBook(id:any){
+    let header ={
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': this.token
+       })
+    }
+    return this.httpService.deleteService('/bookstore_user/admin/delete/book/'+id, {}, true, header)
+  }
 
 }
